@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--配置消费对象-->
+    <bean class="org.apache.rocketmq.client.consumer.DefaultMQPushConsumer" id="defaultMQPushConsumer" init-method="start" destroy-method="shutdown">
+        <!--设置服务端的地址-->
+            <property name="namesrvAddr" value="127.0.0.1:9876"></property>
+        <!--设置消费者组名-->
+            <property name="consumerGroup" value="consumer_search_group"></property>
+        <!--集群模式-->
+        <property name="messageModel" value="CLUSTERING"></property>
+        <!--设置订阅的主题-->
+        <property name="subscription">
+            <map>
+                <entry key="Goods_Topic" value="*"></entry>
+            </map>
+        </property>
+        <property name="messageListener" ref="messageListener"></property>
+    </bean>
+    <bean class="com.pinyougou.search.listener.GoodsMessageListener" id="messageListener"></bean>
+
+</beans>
