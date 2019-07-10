@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="com.itheima.sms.listener.SMSMessageListener" id="messageListener"></bean>
+
+    <bean class="org.apache.rocketmq.client.consumer.DefaultMQPushConsumer" id="defaultMQPushConsumer"
+    init-method="start" destroy-method="shutdown">
+        <!--创建服务端地址-->
+        <property name="namesrvAddr" value="127.0.0.1:9876"></property>
+        <!--创建组名-->
+        <property name="consumerGroup" value="consumer_sms_group"></property>
+        <!--创建主题-->
+        <property name="subscription">
+            <map>
+                <!--topic 是sms_TOPIC SMS_TOPIC 监听所有的TAG-->
+                <entry key="SMS_TOPIC" value="*"></entry>
+            </map>
+        </property>
+        <property name="messageListener" ref="messageListener"></property>
+
+    </bean>
+</beans>
