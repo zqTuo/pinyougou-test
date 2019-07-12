@@ -35,6 +35,9 @@
         <module>pinyougou-user-service</module>
         <module>pinyougou-user-web</module>
         <module>itheima-sms-service</module>
+        <module>itheima-cas-demo</module>
+        <module>itheima-cas-demo2</module>
+        <module>itheima-cas-security</module>
     </modules>
     <packaging>pom</packaging>
 

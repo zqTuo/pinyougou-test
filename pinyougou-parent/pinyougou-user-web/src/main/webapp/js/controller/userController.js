@@ -6,7 +6,7 @@
         list:[],
         entity:{},
         ids:[],
-        smsCode:'',
+        smsCode:'',  //验证码
         searchEntity:{}
     },
     methods: {
@@ -55,12 +55,20 @@
                 }
             })
 
+        },
+    //    获取登录名
+        getName:function () {
+            axios.get('/login/name.shtml').then(function (response) {
+                app.loginname = response.data;
+            }).catch(function (error) {
+                console.log("1231312131321");
+            });
         }
 
     },
     //钩子函数 初始化了事件和
     created: function () {
-      
+        this.getName();
 
 
     }

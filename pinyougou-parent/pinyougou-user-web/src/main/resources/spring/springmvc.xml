@@ -42,6 +42,8 @@
     <dubbo:annotation package="com.pinyougou.user.controller"></dubbo:annotation>
 
     <dubbo:consumer timeout="100000"></dubbo:consumer>
+    <!--引入springsecurity-->
+    <import resource="spring-security.xml"></import>
 
 
 
